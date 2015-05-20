@@ -10,8 +10,11 @@
          stopOnFailure="false"
          syntaxCheck="false">
     <testsuites>
-        <testsuite name="Application Test Suite">
-            <directory>./tests/</directory>
+        <testsuite name="repositories">
+            <directory>tests/Controllers/</directory>
+        </testsuite>
+        <testsuite name="repositories">
+            <directory>tests/Repositories/</directory>
         </testsuite>
     </testsuites>
     <php>
@@ -20,4 +23,9 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
     </php>
+
+    <!--<logging>-->
+        <!--<log type="coverage-html" target="/tmp/dev/reports"/>-->
+        <!--<log type="coverage-clover" target="/tmp/coverage.xml"/>-->
+    <!--</logging>-->
 </phpunit>

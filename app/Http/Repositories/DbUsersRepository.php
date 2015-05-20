@@ -1,4 +1,6 @@
-<?php namespace App\Http\Repository;
+<?php
+
+namespace App\Http\Repositories;
 
 use App\User;
 
@@ -14,7 +16,6 @@ class DbUsersRepository {
      * @var \App\User
      */
     private $user;
-
 
     /**
      * @param \App\User $user
@@ -32,7 +33,7 @@ class DbUsersRepository {
     }
 
     /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Illuminate\Http\Request $request
      * @return bool
      */
     public function store($request) {

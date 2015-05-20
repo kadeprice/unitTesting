@@ -19,13 +19,36 @@
     </testsuites>
     <php>
         <env name="APP_ENV" value="testing"/>
+        <env name="DB_HOST" value="localhost"/>
+        <env name="DB_DATABASE" value="testing"/>
+        <env name="DB_USERNAME" value="testing"/>
+        <env name="DB_PASSWORD" value=""/>
+
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
     </php>
 
-    <!--<logging>-->
-        <!--<log type="coverage-html" target="/tmp/dev/reports"/>-->
-        <!--<log type="coverage-clover" target="/tmp/coverage.xml"/>-->
-    <!--</logging>-->
+    <logging>
+        <log type="coverage-html" target="/tmp/dev/reports"/>
+        <log type="coverage-clover" target="/tmp/coverage.xml"/>
+    </logging>
+    <filter>
+        <blacklist>
+            <directory>./vendor/</directory>
+            <directory>./config/</directory>
+            <directory>./bootstrap/</directory>
+            <!-- and other directories,  -->
+        </blacklist>
+
+        <whitelist>
+            <directory>./app/Http</directory>
+            <!--<exclude>-->
+                <!--<directory>./app/Commands/</directory>-->
+                <!--<directory>./app/Console/</directory>-->
+                <!--<directory>./app/Events/</directory>-->
+                <!--<directory>./app/Exceptoins/</directory>-->
+            <!--</exclude>-->
+        </whitelist>
+    </filter>
 </phpunit>

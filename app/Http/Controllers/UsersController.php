@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\Http\Repository\DbUsersRepository;
+use App\Http\Repositories\DbUsersRepository;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 

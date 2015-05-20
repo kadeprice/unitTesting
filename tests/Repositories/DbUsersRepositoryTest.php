@@ -12,4 +12,11 @@ class DbUsersRepositoryTest extends ProjectTestCase {
 
         $this->assertInstanceOf('App\Http\Repositories\DbUsersRepository', $instance);
     }
+
+    public function testGetAll() {
+        $instance = new DbUsersRepository($this->user);
+        $users = $instance->getAll();
+//        dd($users);
+        $this->assertJson($users);
+    }
 }

@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Repositories;
+use App\Http\Models\User;
 
-use App\User;
 
 /**
  * Created by PhpStorm.
@@ -13,12 +13,12 @@ use App\User;
 class DbUsersRepository {
 
     /**
-     * @var \App\User
+     * @var \App\Http\Models\User
      */
     private $user;
 
     /**
-     * @param \App\User $user
+     * @param User|\App\Http\Models\User $user
      */
     function __construct(User $user) {
         $this->user = $user;

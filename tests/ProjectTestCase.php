@@ -17,7 +17,7 @@ class ProjectTestCase extends TestCase {
         parent::setUp();
 
         $this->user = User::create(
-            ['name' => 'juan', 'email' => 'test@email.com']
+            ['name' => 'John Doe', 'email' => 'test@email.com']
         );
     }
 

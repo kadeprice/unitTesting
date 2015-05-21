@@ -4,6 +4,7 @@ use App\Http\Repositories\DbUsersRepository;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\CreateUserRequest;
 use Illuminate\Http\Request;
 
 class UsersController extends Controller {
@@ -32,26 +33,25 @@ class UsersController extends Controller {
 		return $this->dbUsersRepository->getAll();
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
-	}
-
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param Request|\Illuminate\Http\Request $request
+     * @return Response
+     */
 	public function store(Request $request)
 	{
-		if($this->dbUsersRepository->store($request)) return "It worked";
+        $response = $this->dbUsersRepository->store($request);
 
-        return "It didn't work";
+        switch ($response['response']){
+            case "true":
+                return "It worked";
+                break;
+            case "error":
+                return $response['error'];
+                break;
+        }
+
 	}
 
 	/**
@@ -65,37 +65,6 @@ class UsersController extends Controller {
 		return $this->dbUsersRepository->find($id);
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		//
-	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		//
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($id)
-	{
-		//
-	}
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Repositories;
 use App\Http\Models\User;
+use Illuminate\Validation\ValidationServiceProvider;
 
 
 /**
@@ -28,8 +29,18 @@ class DbUsersRepository {
         return $this->user->all();
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Support\Collection|null|static
+     */
     public function find($id) {
-        return $this->user->find($id);
+        $user = $this->user->find($id);
+
+        if(!$user){
+            return ['error' => 'User Not Found'];
+        }
+
+        return $user;
     }
 
     /**
@@ -37,6 +48,15 @@ class DbUsersRepository {
      * @return bool
      */
     public function store($request) {
-        return $this->user->fill($request->all())->save();
+
+        $validate = \Validator::make($request->all(), $this->user->rules);
+
+        if($validate->fails()){
+            return ['response' => 'error', 'error' => $validate->errors()->all()];
+        }
+
+        if($this->user->create($request->all())){
+            return ['response' => 'true'];
+        }
     }
 }

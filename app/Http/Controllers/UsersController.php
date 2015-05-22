@@ -50,6 +50,10 @@ class UsersController extends Controller {
             case "error":
                 return $response['error'];
                 break;
+
+            case "validation":
+                return $response['error'];
+                break;
         }
 
 	}
@@ -62,7 +66,7 @@ class UsersController extends Controller {
 	 */
 	public function show($id)
 	{
-		return $this->dbUsersRepository->find($id);
+		return $this->dbUsersRepository->getUser($id);
 	}
 
 

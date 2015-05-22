@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Repositories;
+
 use App\Http\Models\User;
 use Illuminate\Validation\ValidationServiceProvider;
 
@@ -33,10 +34,10 @@ class DbUsersRepository {
      * @param $id
      * @return \Illuminate\Support\Collection|null|static
      */
-    public function find($id) {
+    public function getUser($id) {
         $user = $this->user->find($id);
 
-        if(!$user){
+        if (!$user) {
             return ['error' => 'User Not Found'];
         }
 
@@ -51,12 +52,13 @@ class DbUsersRepository {
 
         $validate = \Validator::make($request->all(), $this->user->rules);
 
-        if($validate->fails()){
-            return ['response' => 'error', 'error' => $validate->errors()->all()];
+        if ($validate->fails()) {
+            return ['response' => 'validation', 'error' => $validate->errors()->all()];
         }
 
-        if($this->user->create($request->all())){
+        if ($this->user->create($request->all())) {
             return ['response' => 'true'];
         }
+
     }
 }

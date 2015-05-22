@@ -2,8 +2,9 @@
 
 namespace App\tests\Http;
 
-use \App\User;
+use \App\Http\Models\User;
 use \Illuminate\Foundation\Testing\TestCase;
+use Illuminate\Support\Facades\DB;
 
 class ProjectTestCase extends TestCase {
 
@@ -17,14 +18,25 @@ class ProjectTestCase extends TestCase {
         parent::setUp();
 
         $this->user = User::create(
-            ['name' => 'John Doe', 'email' => 'test@email.com']
+            ['name' => 'John Doe', 'email' => 'john@email.com']
+        );
+
+        $this->user = User::create(
+            ['name' => 'Jane Doe', 'email' => 'jane@email.com']
+        );
+
+        $this->user = User::create(
+            ['name' => 'Dan Doe', 'email' => 'dan@email.com']
         );
     }
 
+    /**
+     *
+     */
     public function tearDown()
     {
-        $this->user->delete();
-
+//        $this->user->delete();
+        DB::table('users')->truncate();
         parent::tearDown();
     }
 
